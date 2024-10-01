@@ -1,17 +1,19 @@
+import Head from "next/head";
 import { MongoClient } from "mongodb";
 import MeetupList from "@/components/meetups/MeetupList";
 import React from "react";
 
-const DUMMY_MEETUPS = [
-  {
-    id: "m1",
-    title: "A First Meetup",
-    image:
-      "https://www.bolu.bel.tr/wp-content/uploads/2021/03/Is-Merkezi-2.jpg",
-    address: "Bolu Merkez",
-    description: "First meetup",
-  },
-];
+export default function HomePage(props) {
+  return (
+    <>
+      <Head>
+        <title>Next.js Meetups Project</title>
+        <meta name="description" content="Browse a list of meetups!" />
+      </Head>
+      <MeetupList meetups={props.meetups} />;
+    </>
+  );
+}
 
 // export async function getServerSideProps(context) {
 //   const req = context.req;
@@ -46,8 +48,4 @@ export async function getStaticProps() {
     },
     revalidate: 1,
   };
-}
-
-export default function HomePage(props) {
-  return <MeetupList meetups={props.meetups} />;
 }
